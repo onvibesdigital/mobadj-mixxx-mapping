@@ -280,6 +280,15 @@ MobaDJ._buttonOutputs = function () {
 MobaDJ.MAPPING_VERSION = 3;
 
 MobaDJ._lastDeckVu = [-1, -1];
+
+// Library scroll (notes 0x37 up / 0x38 down). [Library] MoveUp/MoveDown move whatever
+// library widget has keyboard focus, so they do nothing while Mixxx's window is in the
+// background or the sidebar has focus, and LOAD then finds no selected track.
+// [Playlist] SelectTrackKnob moves the track table's selection directly, focus or not.
+MobaDJ.libraryMove = function (channel, control, value) {
+    if (value <= 0) return;
+    engine.setValue("[Playlist]", "SelectTrackKnob", control === 0x37 ? -1 : 1);
+};
 MobaDJ._sendDeckVu = function (idx, status, value) {
     var n = Math.round(value * 127);
     if (n < 0) n = 0;

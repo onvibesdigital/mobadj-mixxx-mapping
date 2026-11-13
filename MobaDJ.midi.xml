@@ -227,8 +227,8 @@
 
             <!-- ========================= Library navigation ========================= -->
 
-            <control><group>[Library]</group><key>MoveUp</key><status>0x90</status><midino>0x37</midino><options><button /></options></control>
-            <control><group>[Library]</group><key>MoveDown</key><status>0x90</status><midino>0x38</midino><options><button /></options></control>
+            <control><group>[Library]</group><key>MobaDJ.libraryMove</key><status>0x90</status><midino>0x37</midino><options><script-binding /></options></control>
+            <control><group>[Library]</group><key>MobaDJ.libraryMove</key><status>0x90</status><midino>0x38</midino><options><script-binding /></options></control>
 
             <!-- ========================= Link management ========================= -->
             <!-- Sent by the app on every (re)connect (USB re-plug, Bluetooth reconnect):
