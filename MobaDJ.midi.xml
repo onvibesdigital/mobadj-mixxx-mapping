@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later
+     Copyright (c) 2026 ONVIBES DIGITAL LTDA. Licensed under the GNU GPL v2 or later (see LICENSE). -->
+<MixxxControllerPreset mixxxVersion="2.4.0+" schemaVersion="1">
+    <info>
+        <name>MobaDJ</name>
+        <author>digital@onvibes.com.br</author>
+        <description>Mapping for the MobaDJ Android app — 2 decks via USB MIDI or Bluetooth LE MIDI. Includes jog wheels (scratch + bend), tempo faders, EQ, filter (with chain preset selector), 3-slot FX rack (with prev/next effect), PFL, head mix/vol, beatloops, beatjumps and library scroll.</description>
+    </info>
+    <controller id="MobaDJ">
+        <scriptfiles>
+            <file filename="MobaDJ.script.js" functionprefix="MobaDJ" />
+        </scriptfiles>
+        <controls>
+
+            <!-- ========================= Deck A (channel 1) ========================= -->
+
+            <control><group>[Channel1]</group><key>play</key><status>0x90</status><midino>0x3B</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>cue_default</key><status>0x90</status><midino>0x3C</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatsync</key><status>0x90</status><midino>0x3D</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>LoadSelectedTrack</key><status>0x90</status><midino>0x3E</midino><options><button /></options></control>
+
+            <!-- PFL (headphone cue) — toggle via script -->
+            <control><group>[Channel1]</group><key>MobaDJ.pflA</key><status>0x90</status><midino>0x3F</midino><options><script-binding /></options></control>
+
+            <!-- Hot Cues 1-8 (CUE mode on the performance pads) -->
+            <control><group>[Channel1]</group><key>hotcue_1_activate</key><status>0x90</status><midino>0x18</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_2_activate</key><status>0x90</status><midino>0x19</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_3_activate</key><status>0x90</status><midino>0x1A</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_4_activate</key><status>0x90</status><midino>0x1B</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_5_activate</key><status>0x90</status><midino>0x1C</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_6_activate</key><status>0x90</status><midino>0x1D</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_7_activate</key><status>0x90</status><midino>0x1E</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_8_activate</key><status>0x90</status><midino>0x1F</midino><options><button /></options></control>
+
+            <!-- Beatloops — script-binding with a handler that ignores release and does correct toggle -->
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x40</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x41</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x42</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x43</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x44</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x45</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x46</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x47</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x48</midino><options><script-binding /></options></control>
+
+            <!-- Beatjumps −32..+32 beats (JUMP mode on the performance pads, notes 0x50-0x5B) -->
+            <control><group>[Channel1]</group><key>beatjump_32_backward</key><status>0x90</status><midino>0x50</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_16_backward</key><status>0x90</status><midino>0x51</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_8_backward</key><status>0x90</status><midino>0x52</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_4_backward</key><status>0x90</status><midino>0x53</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_2_backward</key><status>0x90</status><midino>0x54</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_1_backward</key><status>0x90</status><midino>0x55</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_1_forward</key><status>0x90</status><midino>0x56</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_2_forward</key><status>0x90</status><midino>0x57</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_4_forward</key><status>0x90</status><midino>0x58</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_8_forward</key><status>0x90</status><midino>0x59</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_16_forward</key><status>0x90</status><midino>0x5A</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>beatjump_32_forward</key><status>0x90</status><midino>0x5B</midino><options><button /></options></control>
+
+            <!-- Jog wheel via script -->
+            <control><group>[Channel1]</group><key>MobaDJ.jogTouchA</key><status>0x90</status><midino>0x36</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.jogTurnA</key><status>0xB0</status><midino>0x30</midino><options><script-binding /></options></control>
+
+            <!-- Tempo fader (rate) via script -->
+            <control><group>[Channel1]</group><key>MobaDJ.tempoA</key><status>0xB0</status><midino>0x14</midino><options><script-binding /></options></control>
+
+            <!-- Tempo range (rateRange): index 0..3 → ±4/8/16/50% -->
+            <control><group>[Channel1]</group><key>MobaDJ.tempoRangeA</key><status>0xB0</status><midino>0x15</midino><options><script-binding /></options></control>
+
+            <!-- Fine tempo nudge: jump to the next integer BPM above/below the current one -->
+            <control><group>[Channel1]</group><key>MobaDJ.tempoFineDownA</key><status>0x90</status><midino>0x39</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.tempoFineUpA</key><status>0x90</status><midino>0x3A</midino><options><script-binding /></options></control>
+
+            <!-- Slip mode toggle (scratch keeps phantom playhead, restores on jog release) -->
+            <control><group>[Channel1]</group><key>MobaDJ.slipToggleA</key><status>0x90</status><midino>0x29</midino><options><script-binding /></options></control>
+
+            <!-- FX unit 1 assigned to deck 1 -->
+            <control><group>[EffectRack1_EffectUnit1]</group><key>group_[Channel1]_enable</key><status>0x90</status><midino>0x28</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit1]</group><key>mix</key><status>0xB0</status><midino>0x24</midino><options><normal /></options></control>
+
+            <!-- 3 slots of deck 1 FX rack: meta (CC), enable toggle (script), next/prev effect (button) -->
+            <control><group>[EffectRack1_EffectUnit1_Effect1]</group><key>meta</key><status>0xB0</status><midino>0x21</midino><options><normal /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect2]</group><key>meta</key><status>0xB0</status><midino>0x22</midino><options><normal /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect3]</group><key>meta</key><status>0xB0</status><midino>0x23</midino><options><normal /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.fxSlot1EnableA</key><status>0x90</status><midino>0x2B</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.fxSlot2EnableA</key><status>0x90</status><midino>0x2C</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.fxSlot3EnableA</key><status>0x90</status><midino>0x2D</midino><options><script-binding /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect1]</group><key>next_effect</key><status>0x90</status><midino>0x2E</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect2]</group><key>next_effect</key><status>0x90</status><midino>0x2F</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect3]</group><key>next_effect</key><status>0x90</status><midino>0x30</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect1]</group><key>prev_effect</key><status>0x90</status><midino>0x31</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect2]</group><key>prev_effect</key><status>0x90</status><midino>0x32</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit1_Effect3]</group><key>prev_effect</key><status>0x90</status><midino>0x35</midino><options><button /></options></control>
+
+            <!-- Filter (QuickEffect chain) on/off toggle via script -->
+            <control><group>[Channel1]</group><key>MobaDJ.filterEnableA</key><status>0x90</status><midino>0x2A</midino><options><script-binding /></options></control>
+
+            <!-- Filter chain preset prev/next (cycles between Filter, LP/HP, Echo, etc) -->
+            <control><group>[Channel1]</group><key>MobaDJ.filterPrevA</key><status>0x90</status><midino>0x33</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.filterNextA</key><status>0x90</status><midino>0x34</midino><options><script-binding /></options></control>
+
+            <!-- Volume fader -->
+            <control><group>[Channel1]</group><key>volume</key><status>0xB0</status><midino>0x07</midino><options><normal /></options></control>
+
+            <!-- EQ -->
+            <control><group>[EqualizerRack1_[Channel1]_Effect1]</group><key>parameter3</key><status>0xB0</status><midino>0x10</midino><options><normal /></options></control>
+            <control><group>[EqualizerRack1_[Channel1]_Effect1]</group><key>parameter2</key><status>0xB0</status><midino>0x11</midino><options><normal /></options></control>
+            <control><group>[EqualizerRack1_[Channel1]_Effect1]</group><key>parameter1</key><status>0xB0</status><midino>0x12</midino><options><normal /></options></control>
+
+            <!-- Filter (Quick Effect) -->
+            <control><group>[QuickEffectRack1_[Channel1]]</group><key>super1</key><status>0xB0</status><midino>0x13</midino><options><normal /></options></control>
+
+            <!-- Hot cue clear 1-8 (long-press on app's CUE pad → wipes the cue) -->
+            <control><group>[Channel1]</group><key>hotcue_1_clear</key><status>0x90</status><midino>0x60</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_2_clear</key><status>0x90</status><midino>0x61</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_3_clear</key><status>0x90</status><midino>0x62</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_4_clear</key><status>0x90</status><midino>0x63</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_5_clear</key><status>0x90</status><midino>0x64</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_6_clear</key><status>0x90</status><midino>0x65</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_7_clear</key><status>0x90</status><midino>0x66</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>hotcue_8_clear</key><status>0x90</status><midino>0x67</midino><options><button /></options></control>
+
+            <!-- Key shift per deck — 1 semitone per tap -->
+            <control><group>[Channel1]</group><key>pitch_down</key><status>0x90</status><midino>0x68</midino><options><button /></options></control>
+            <control><group>[Channel1]</group><key>pitch_up</key><status>0x90</status><midino>0x69</midino><options><button /></options></control>
+
+            <!-- ========================= Deck B (channel 2) ========================= -->
+
+            <control><group>[Channel2]</group><key>play</key><status>0x91</status><midino>0x3B</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>cue_default</key><status>0x91</status><midino>0x3C</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatsync</key><status>0x91</status><midino>0x3D</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>LoadSelectedTrack</key><status>0x91</status><midino>0x3E</midino><options><button /></options></control>
+
+            <control><group>[Channel2]</group><key>MobaDJ.pflB</key><status>0x91</status><midino>0x3F</midino><options><script-binding /></options></control>
+
+            <control><group>[Channel2]</group><key>hotcue_1_activate</key><status>0x91</status><midino>0x18</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_2_activate</key><status>0x91</status><midino>0x19</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_3_activate</key><status>0x91</status><midino>0x1A</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_4_activate</key><status>0x91</status><midino>0x1B</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_5_activate</key><status>0x91</status><midino>0x1C</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_6_activate</key><status>0x91</status><midino>0x1D</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_7_activate</key><status>0x91</status><midino>0x1E</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_8_activate</key><status>0x91</status><midino>0x1F</midino><options><button /></options></control>
+
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x40</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x41</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x42</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x43</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x44</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x45</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x46</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x47</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x48</midino><options><script-binding /></options></control>
+
+            <control><group>[Channel2]</group><key>beatjump_32_backward</key><status>0x91</status><midino>0x50</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_16_backward</key><status>0x91</status><midino>0x51</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_8_backward</key><status>0x91</status><midino>0x52</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_4_backward</key><status>0x91</status><midino>0x53</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_2_backward</key><status>0x91</status><midino>0x54</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_1_backward</key><status>0x91</status><midino>0x55</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_1_forward</key><status>0x91</status><midino>0x56</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_2_forward</key><status>0x91</status><midino>0x57</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_4_forward</key><status>0x91</status><midino>0x58</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_8_forward</key><status>0x91</status><midino>0x59</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_16_forward</key><status>0x91</status><midino>0x5A</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>beatjump_32_forward</key><status>0x91</status><midino>0x5B</midino><options><button /></options></control>
+
+            <control><group>[Channel2]</group><key>MobaDJ.jogTouchB</key><status>0x91</status><midino>0x36</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.jogTurnB</key><status>0xB1</status><midino>0x30</midino><options><script-binding /></options></control>
+
+            <control><group>[Channel2]</group><key>MobaDJ.tempoB</key><status>0xB1</status><midino>0x14</midino><options><script-binding /></options></control>
+
+            <control><group>[Channel2]</group><key>MobaDJ.tempoRangeB</key><status>0xB1</status><midino>0x15</midino><options><script-binding /></options></control>
+
+            <!-- Fine tempo nudge deck B -->
+            <control><group>[Channel2]</group><key>MobaDJ.tempoFineDownB</key><status>0x91</status><midino>0x39</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.tempoFineUpB</key><status>0x91</status><midino>0x3A</midino><options><script-binding /></options></control>
+
+            <!-- Slip mode toggle deck B -->
+            <control><group>[Channel2]</group><key>MobaDJ.slipToggleB</key><status>0x91</status><midino>0x29</midino><options><script-binding /></options></control>
+
+            <control><group>[EffectRack1_EffectUnit2]</group><key>group_[Channel2]_enable</key><status>0x91</status><midino>0x28</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit2]</group><key>mix</key><status>0xB1</status><midino>0x24</midino><options><normal /></options></control>
+
+            <!-- 3 slots of deck 2 FX rack -->
+            <control><group>[EffectRack1_EffectUnit2_Effect1]</group><key>meta</key><status>0xB1</status><midino>0x21</midino><options><normal /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect2]</group><key>meta</key><status>0xB1</status><midino>0x22</midino><options><normal /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect3]</group><key>meta</key><status>0xB1</status><midino>0x23</midino><options><normal /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.fxSlot1EnableB</key><status>0x91</status><midino>0x2B</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.fxSlot2EnableB</key><status>0x91</status><midino>0x2C</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.fxSlot3EnableB</key><status>0x91</status><midino>0x2D</midino><options><script-binding /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect1]</group><key>next_effect</key><status>0x91</status><midino>0x2E</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect2]</group><key>next_effect</key><status>0x91</status><midino>0x2F</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect3]</group><key>next_effect</key><status>0x91</status><midino>0x30</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect1]</group><key>prev_effect</key><status>0x91</status><midino>0x31</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect2]</group><key>prev_effect</key><status>0x91</status><midino>0x32</midino><options><button /></options></control>
+            <control><group>[EffectRack1_EffectUnit2_Effect3]</group><key>prev_effect</key><status>0x91</status><midino>0x35</midino><options><button /></options></control>
+
+            <control><group>[Channel2]</group><key>MobaDJ.filterEnableB</key><status>0x91</status><midino>0x2A</midino><options><script-binding /></options></control>
+
+            <!-- Filter chain preset prev/next deck B -->
+            <control><group>[Channel2]</group><key>MobaDJ.filterPrevB</key><status>0x91</status><midino>0x33</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.filterNextB</key><status>0x91</status><midino>0x34</midino><options><script-binding /></options></control>
+
+            <control><group>[Channel2]</group><key>volume</key><status>0xB1</status><midino>0x07</midino><options><normal /></options></control>
+
+            <control><group>[EqualizerRack1_[Channel2]_Effect1]</group><key>parameter3</key><status>0xB1</status><midino>0x10</midino><options><normal /></options></control>
+            <control><group>[EqualizerRack1_[Channel2]_Effect1]</group><key>parameter2</key><status>0xB1</status><midino>0x11</midino><options><normal /></options></control>
+            <control><group>[EqualizerRack1_[Channel2]_Effect1]</group><key>parameter1</key><status>0xB1</status><midino>0x12</midino><options><normal /></options></control>
+
+            <control><group>[QuickEffectRack1_[Channel2]]</group><key>super1</key><status>0xB1</status><midino>0x13</midino><options><normal /></options></control>
+
+            <!-- Hot cue clear 1-8 deck B -->
+            <control><group>[Channel2]</group><key>hotcue_1_clear</key><status>0x91</status><midino>0x60</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_2_clear</key><status>0x91</status><midino>0x61</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_3_clear</key><status>0x91</status><midino>0x62</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_4_clear</key><status>0x91</status><midino>0x63</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_5_clear</key><status>0x91</status><midino>0x64</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_6_clear</key><status>0x91</status><midino>0x65</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_7_clear</key><status>0x91</status><midino>0x66</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>hotcue_8_clear</key><status>0x91</status><midino>0x67</midino><options><button /></options></control>
+
+            <!-- Key shift deck B -->
+            <control><group>[Channel2]</group><key>pitch_down</key><status>0x91</status><midino>0x68</midino><options><button /></options></control>
+            <control><group>[Channel2]</group><key>pitch_up</key><status>0x91</status><midino>0x69</midino><options><button /></options></control>
+
+            <!-- ========================= Library navigation ========================= -->
+
+            <control><group>[Library]</group><key>MoveUp</key><status>0x90</status><midino>0x37</midino><options><button /></options></control>
+            <control><group>[Library]</group><key>MoveDown</key><status>0x90</status><midino>0x38</midino><options><button /></options></control>
+
+            <!-- ========================= Link management ========================= -->
+            <!-- Sent by the app on every (re)connect (USB re-plug, Bluetooth reconnect):
+                 re-sends all feedback so the app matches Mixxx's current state. -->
+            <control><group>[Master]</group><key>MobaDJ.resync</key><status>0x90</status><midino>0x6A</midino><options><script-binding /></options></control>
+            <!-- "Are you there?" — answered with note 0x6B, velocity = MAPPING_VERSION. -->
+            <control><group>[Master]</group><key>MobaDJ.hello</key><status>0x90</status><midino>0x6B</midino><options><script-binding /></options></control>
+
+            <!-- ========================= Master (headphone/cue/gain) ========================= -->
+
+            <control><group>[Master]</group><key>gain</key><status>0xB0</status><midino>0x06</midino><options><normal /></options></control>
+            <control><group>[Master]</group><key>crossfader</key><status>0xB0</status><midino>0x08</midino><options><normal /></options></control>
+            <control><group>[Master]</group><key>headVolume</key><status>0xB0</status><midino>0x09</midino><options><normal /></options></control>
+            <control><group>[Master]</group><key>headMix</key><status>0xB0</status><midino>0x0A</midino><options><normal /></options></control>
+            <!-- Crossfader setup from the app (127 = on, 0 = back to Mixxx's own setting). -->
+            <control><group>[Mixer Profile]</group><key>MobaDJ.xfaderCurve</key><status>0xB0</status><midino>0x0B</midino><options><script-binding /></options></control>
+            <control><group>[Mixer Profile]</group><key>MobaDJ.xfaderReverse</key><status>0xB0</status><midino>0x0C</midino><options><script-binding /></options></control>
+
+        </controls>
+
+        <!-- ========================================================================
+             OUTPUTS — feedback from Mixxx to the app (lights up pad/light on phone).
+             The app opens the USB peripheral output port and parses incoming bytes
+             via MidiState.updateFromMidi.
+             ======================================================================== -->
+        <outputs>
+            <!-- PFL (headphone cue) per deck. Mixxx sends 0x7F when active, 0x00 when off. -->
+            <output>
+                <group>[Channel1]</group>
+                <key>pfl</key>
+                <status>0x90</status>
+                <midino>0x3F</midino>
+                <on>0x7F</on>
+                <off>0x00</off>
+                <minimum>0.5</minimum>
+            </output>
+            <output>
+                <group>[Channel2]</group>
+                <key>pfl</key>
+                <status>0x91</status>
+                <midino>0x3F</midino>
+                <on>0x7F</on>
+                <off>0x00</off>
+                <minimum>0.5</minimum>
+            </output>
+
+            <!-- Filter chain enabled (bypass off) feedback per deck -->
+            <output>
+                <group>[QuickEffectRack1_[Channel1]]</group>
+                <key>enabled</key>
+                <status>0x90</status>
+                <midino>0x2A</midino>
+                <on>0x7F</on>
+                <off>0x00</off>
+                <minimum>0.5</minimum>
+            </output>
+            <output>
+                <group>[QuickEffectRack1_[Channel2]]</group>
+                <key>enabled</key>
+                <status>0x91</status>
+                <midino>0x2A</midino>
+                <on>0x7F</on>
+                <off>0x00</off>
+                <minimum>0.5</minimum>
+            </output>
+
+            <!-- FX rack: enabled state of the 3 slots per deck → app dim/lit on the knob -->
+            <output><group>[EffectRack1_EffectUnit1_Effect1]</group><key>enabled</key><status>0x90</status><midino>0x2B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[EffectRack1_EffectUnit1_Effect2]</group><key>enabled</key><status>0x90</status><midino>0x2C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[EffectRack1_EffectUnit1_Effect3]</group><key>enabled</key><status>0x90</status><midino>0x2D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[EffectRack1_EffectUnit2_Effect1]</group><key>enabled</key><status>0x91</status><midino>0x2B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[EffectRack1_EffectUnit2_Effect2]</group><key>enabled</key><status>0x91</status><midino>0x2C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[EffectRack1_EffectUnit2_Effect3]</group><key>enabled</key><status>0x91</status><midino>0x2D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+
+            <!-- Play state per deck → PLAY transport pad lights up while playing -->
+            <output><group>[Channel1]</group><key>play</key><status>0x90</status><midino>0x3B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>play</key><status>0x91</status><midino>0x3B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+
+            <!-- Slip mode enabled per deck → SLIP pad lights up when active -->
+            <output><group>[Channel1]</group><key>slip_enabled</key><status>0x90</status><midino>0x29</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>slip_enabled</key><status>0x91</status><midino>0x29</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+
+            <!-- Hot cue enabled (exists or not) per deck × 8 slots → CUE pad only lights up where a cue is recorded -->
+            <output><group>[Channel1]</group><key>hotcue_1_enabled</key><status>0x90</status><midino>0x18</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_2_enabled</key><status>0x90</status><midino>0x19</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_3_enabled</key><status>0x90</status><midino>0x1A</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_4_enabled</key><status>0x90</status><midino>0x1B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_5_enabled</key><status>0x90</status><midino>0x1C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_6_enabled</key><status>0x90</status><midino>0x1D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_7_enabled</key><status>0x90</status><midino>0x1E</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel1]</group><key>hotcue_8_enabled</key><status>0x90</status><midino>0x1F</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_1_enabled</key><status>0x91</status><midino>0x18</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_2_enabled</key><status>0x91</status><midino>0x19</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_3_enabled</key><status>0x91</status><midino>0x1A</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_4_enabled</key><status>0x91</status><midino>0x1B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_5_enabled</key><status>0x91</status><midino>0x1C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_6_enabled</key><status>0x91</status><midino>0x1D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_7_enabled</key><status>0x91</status><midino>0x1E</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[Channel2]</group><key>hotcue_8_enabled</key><status>0x91</status><midino>0x1F</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+
+            <!-- FX unit assigned to the deck (FX ON pad lit state) -->
+            <output><group>[EffectRack1_EffectUnit1]</group><key>group_[Channel1]_enable</key><status>0x90</status><midino>0x28</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <output><group>[EffectRack1_EffectUnit2]</group><key>group_[Channel2]_enable</key><status>0x91</status><midino>0x28</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+
+            <!-- BPM and VU meters are continuous — Mixxx <output> doesn't scale well.
+                 Handled by the script via engine.makeConnection(): see init() in
+                 MobaDJ.script.js. -->
+        </outputs>
+    </controller>
+</MixxxControllerPreset>
