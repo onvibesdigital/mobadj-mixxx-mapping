@@ -43,6 +43,8 @@
             <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x46</midino><options><script-binding /></options></control>
             <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x47</midino><options><script-binding /></options></control>
             <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x48</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x49</midino><options><script-binding /></options></control>
+            <control><group>[Channel1]</group><key>MobaDJ.beatloopHandler</key><status>0x90</status><midino>0x4A</midino><options><script-binding /></options></control>
 
             <!-- Beatjumps −32..+32 beats (JUMP mode on the performance pads, notes 0x50-0x5B) -->
             <control><group>[Channel1]</group><key>beatjump_32_backward</key><status>0x90</status><midino>0x50</midino><options><button /></options></control>
@@ -152,6 +154,8 @@
             <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x46</midino><options><script-binding /></options></control>
             <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x47</midino><options><script-binding /></options></control>
             <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x48</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x49</midino><options><script-binding /></options></control>
+            <control><group>[Channel2]</group><key>MobaDJ.beatloopHandler</key><status>0x91</status><midino>0x4A</midino><options><script-binding /></options></control>
 
             <control><group>[Channel2]</group><key>beatjump_32_backward</key><status>0x91</status><midino>0x50</midino><options><button /></options></control>
             <control><group>[Channel2]</group><key>beatjump_16_backward</key><status>0x91</status><midino>0x51</midino><options><button /></options></control>

@@ -234,8 +234,9 @@ MobaDJ.init = function () {
     engine.beginTimer(300, MobaDJ._sendButtonStates, true);
 };
 
-// Reads loop_enabled + beatloop_size from the deck and sends CC 0x44 with the active index (0..8) or 127.
-MobaDJ._loopSizes = [0.125, 0.25, 0.5, 1, 2, 4, 8, 16, 32];
+// Reads loop_enabled + beatloop_size from the deck and sends CC 0x44 with the active index (0..10) or 127.
+// Same order as beatloopSizes below; 1/32 and 1/16 were added at the end (v4) so old indexes keep their meaning.
+MobaDJ._loopSizes = [0.125, 0.25, 0.5, 1, 2, 4, 8, 16, 32, 0.03125, 0.0625];
 MobaDJ._notifyLoopState = function (deckNum) {
     var group = "[Channel" + deckNum + "]";
     var status = deckNum === 1 ? 0xB0 : 0xB1;
@@ -277,7 +278,8 @@ MobaDJ._buttonOutputs = function () {
 
 // Bumped when the app ↔ mapping protocol changes; the app warns when it's too old.
 // v2: crossfader curve + reverse (CC 0x0B / 0x0C). v3: deck VU (CC 0x49).
-MobaDJ.MAPPING_VERSION = 3;
+// v4: 1/32 and 1/16 beatloops (notes 0x49 / 0x4A).
+MobaDJ.MAPPING_VERSION = 4;
 
 MobaDJ._lastDeckVu = [-1, -1];
 
@@ -496,11 +498,12 @@ MobaDJ._fxSlotToggle = function (deckNum, slotNum, value) {
     }
 };
 
-// Beatloop sizes corresponding to the 9 pads (indexed 0..8).
-MobaDJ.beatloopSizes = ["0.125", "0.25", "0.5", "1", "2", "4", "8", "16", "32"];
+// Beatloop sizes corresponding to the 11 loop notes (indexed 0..10, notes 0x40..0x4A).
+// 1/32 and 1/16 sit at the end (added in v4) so the older indexes are unchanged.
+MobaDJ.beatloopSizes = ["0.125", "0.25", "0.5", "1", "2", "4", "8", "16", "32", "0.03125", "0.0625"];
 
-// Generic handler for beatloop pads — one shared by all 9 pads × 2 decks.
-// Mixxx passes `control` = midino (0x40..0x48) and `group` = [ChannelN] via the XML.
+// Generic handler for beatloop pads — one shared by all 11 pads × 2 decks.
+// Mixxx passes `control` = midino (0x40..0x4A) and `group` = [ChannelN] via the XML.
 //
 // Behavior:
 //   - Ignores release (value=0) so Mixxx doesn't deactivate the loop the moment
@@ -511,7 +514,7 @@ MobaDJ.beatloopSizes = ["0.125", "0.25", "0.5", "1", "2", "4", "8", "16", "32"];
 MobaDJ.beatloopHandler = function (channel, control, value, status, group) {
     if (value <= 0) return;
     var padIndex = control - 0x40;
-    if (padIndex < 0 || padIndex > 8) return;
+    if (padIndex < 0 || padIndex >= MobaDJ.beatloopSizes.length) return;
     var beats = MobaDJ.beatloopSizes[padIndex];
 
     var loopActive = engine.getValue(group, "loop_enabled") > 0;
