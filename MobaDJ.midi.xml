@@ -5,7 +5,7 @@
     <info>
         <name>MobaDJ</name>
         <author>digital@onvibes.com.br</author>
-        <description>Mapping for the MobaDJ Android app — 2 decks via USB MIDI or Bluetooth LE MIDI. Includes jog wheels (scratch + bend), tempo faders, EQ, filter (with chain preset selector), 3-slot FX rack (with prev/next effect), PFL, head mix/vol, beatloops, beatjumps and library scroll.</description>
+        <description>Mapping for the MobaDJ apps (Android and iPhone) — 2 decks over USB MIDI (Android), Wi-Fi through MobaDJ Link, Bluetooth LE MIDI or RTP-MIDI. Includes jog wheels (scratch + bend), tempo faders, EQ, filter (with chain preset selector), 3-slot FX rack (with prev/next effect), PFL, head mix/vol, beatloops, beatjumps and library scroll.</description>
     </info>
     <controller id="MobaDJ">
         <scriptfiles>

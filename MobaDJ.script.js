@@ -4,7 +4,7 @@
 // MobaDJ — Mixxx JS script
 // Responsible for:
 //  - Jog wheel: scratch mode (touch in inner zone) + pitch bend (outer ring)
-//  - Tempo (rate) with bipolar conversion (0..127 → -1..+1)
+//  - Tempo (rate_ratio) with bipolar conversion (0..127 → −range..+range)
 //  - PFL (headphone cue) as toggle
 //  - Filter chain bypass (toggle) + chain preset selector (◀/▶ in the Mix tab)
 //  - FX slot enable (deterministic toggle via script)
@@ -78,7 +78,7 @@ MobaDJ.init = function () {
     );
 
     // Loop state per deck — combines loop_enabled + beatloop_size into a single CC (0x44).
-    // Value: index 0..8 of the active size, or 127 = no loop.
+    // Value: index 0..10 of the active size (9 = 1/32, 10 = 1/16), or 127 = no loop.
     MobaDJ._connections.push(
         engine.makeConnection("[Channel1]", "loop_enabled", function () { MobaDJ._notifyLoopState(1); })
     );
@@ -563,5 +563,5 @@ MobaDJ.fxSlot3EnableA = function (ch, ctl, v) { MobaDJ._fxSlotToggle(1, 3, v); }
 MobaDJ.fxSlot1EnableB = function (ch, ctl, v) { MobaDJ._fxSlotToggle(2, 1, v); };
 MobaDJ.fxSlot2EnableB = function (ch, ctl, v) { MobaDJ._fxSlotToggle(2, 2, v); };
 MobaDJ.fxSlot3EnableB = function (ch, ctl, v) { MobaDJ._fxSlotToggle(2, 3, v); };
-// beatloopHandler is called directly by the 18 <control> entries in the XML
-// (9 pads × 2 decks), all pointing to the same handler.
+// beatloopHandler is called directly by the 22 <control> entries in the XML
+// (11 loop sizes × 2 decks), all pointing to the same handler.
