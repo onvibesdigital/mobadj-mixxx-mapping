@@ -113,7 +113,7 @@
             <!-- Filter (Quick Effect) -->
             <control><group>[QuickEffectRack1_[Channel1]]</group><key>super1</key><status>0xB0</status><midino>0x13</midino><options><normal /></options></control>
 
-            <!-- Hot cue clear 1-8 (long-press on app's CUE pad → wipes the cue) -->
+            <!-- Hot cue clear 1-8 (app: DEL pill, then the CUE pad → wipes the cue) -->
             <control><group>[Channel1]</group><key>hotcue_1_clear</key><status>0x90</status><midino>0x60</midino><options><button /></options></control>
             <control><group>[Channel1]</group><key>hotcue_2_clear</key><status>0x90</status><midino>0x61</midino><options><button /></options></control>
             <control><group>[Channel1]</group><key>hotcue_3_clear</key><status>0x90</status><midino>0x62</midino><options><button /></options></control>
@@ -315,23 +315,25 @@
             <output><group>[Channel1]</group><key>slip_enabled</key><status>0x90</status><midino>0x29</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
             <output><group>[Channel2]</group><key>slip_enabled</key><status>0x91</status><midino>0x29</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
 
-            <!-- Hot cue enabled (exists or not) per deck × 8 slots → CUE pad only lights up where a cue is recorded -->
-            <output><group>[Channel1]</group><key>hotcue_1_enabled</key><status>0x90</status><midino>0x18</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_2_enabled</key><status>0x90</status><midino>0x19</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_3_enabled</key><status>0x90</status><midino>0x1A</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_4_enabled</key><status>0x90</status><midino>0x1B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_5_enabled</key><status>0x90</status><midino>0x1C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_6_enabled</key><status>0x90</status><midino>0x1D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_7_enabled</key><status>0x90</status><midino>0x1E</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel1]</group><key>hotcue_8_enabled</key><status>0x90</status><midino>0x1F</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_1_enabled</key><status>0x91</status><midino>0x18</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_2_enabled</key><status>0x91</status><midino>0x19</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_3_enabled</key><status>0x91</status><midino>0x1A</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_4_enabled</key><status>0x91</status><midino>0x1B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_5_enabled</key><status>0x91</status><midino>0x1C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_6_enabled</key><status>0x91</status><midino>0x1D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_7_enabled</key><status>0x91</status><midino>0x1E</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
-            <output><group>[Channel2]</group><key>hotcue_8_enabled</key><status>0x91</status><midino>0x1F</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
+            <!-- Hot cue status per deck × 8 slots → CUE pad lights up where a cue is recorded.
+                 hotcue_N_enabled is 0 empty, 1 set, 2 active (a saved loop cue while its loop is on, or a
+                 held preview). <maximum>2</maximum> keeps active cues lit; without it Mixxx uses 1 and sends off. -->
+            <output><group>[Channel1]</group><key>hotcue_1_enabled</key><status>0x90</status><midino>0x18</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_2_enabled</key><status>0x90</status><midino>0x19</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_3_enabled</key><status>0x90</status><midino>0x1A</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_4_enabled</key><status>0x90</status><midino>0x1B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_5_enabled</key><status>0x90</status><midino>0x1C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_6_enabled</key><status>0x90</status><midino>0x1D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_7_enabled</key><status>0x90</status><midino>0x1E</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel1]</group><key>hotcue_8_enabled</key><status>0x90</status><midino>0x1F</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_1_enabled</key><status>0x91</status><midino>0x18</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_2_enabled</key><status>0x91</status><midino>0x19</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_3_enabled</key><status>0x91</status><midino>0x1A</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_4_enabled</key><status>0x91</status><midino>0x1B</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_5_enabled</key><status>0x91</status><midino>0x1C</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_6_enabled</key><status>0x91</status><midino>0x1D</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_7_enabled</key><status>0x91</status><midino>0x1E</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
+            <output><group>[Channel2]</group><key>hotcue_8_enabled</key><status>0x91</status><midino>0x1F</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum><maximum>2</maximum></output>
 
             <!-- FX unit assigned to the deck (FX ON pad lit state) -->
             <output><group>[EffectRack1_EffectUnit1]</group><key>group_[Channel1]_enable</key><status>0x90</status><midino>0x28</midino><on>0x7F</on><off>0x00</off><minimum>0.5</minimum></output>
