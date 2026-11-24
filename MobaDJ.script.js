@@ -284,7 +284,8 @@ MobaDJ._buttonOutputs = function () {
 // Bumped when the app ↔ mapping protocol changes; the app warns when it's too old.
 // v2: crossfader curve + reverse (CC 0x0B / 0x0C). v3: deck VU (CC 0x49).
 // v4: 1/32 and 1/16 beatloops (notes 0x49 / 0x4A). v5: jog decodes offset 64 (was two's complement).
-MobaDJ.MAPPING_VERSION = 5;
+// v6: shutdown() turns the phone's pads, hot cues, VUs, loop and BPM off.
+MobaDJ.MAPPING_VERSION = 6;
 
 MobaDJ._lastDeckVu = [-1, -1];
 
@@ -349,9 +350,41 @@ MobaDJ.shutdown = function () {
         MobaDJ._connections[i].disconnect();
     }
     MobaDJ._connections = [];
+    for (var t = 0; t < 2; t++) {
+        if (MobaDJ._pendingHotcueTimer[t] !== 0) {
+            engine.stopTimer(MobaDJ._pendingHotcueTimer[t]);
+            MobaDJ._pendingHotcueTimer[t] = 0;
+        }
+    }
     // Hand the crossfader back the way the user set it in Mixxx's preferences.
     MobaDJ.xfaderCurve(0, 0x0B, 0);
     MobaDJ.xfaderReverse(0, 0x0C, 0);
+    MobaDJ._sendAllOff();
+};
+
+// Turns the phone's lights and meters off (mapping disabled or Mixxx quitting), so the app
+// doesn't keep showing PLAY, hot cues, a loop or a BPM from a Mixxx that is gone.
+// Knob/fader positions are left as they are. Off values match how both apps decode:
+// BPM raw 0 = "no BPM" (shown as —), loop index 127 = no loop.
+MobaDJ._sendAllOff = function () {
+    var outs = MobaDJ._buttonOutputs();
+    for (var i = 0; i < outs.length; i++) {
+        midi.sendShortMsg(outs[i][2], outs[i][3], 0x00);
+    }
+    for (var d = 1; d <= 2; d++) {
+        var note = d === 1 ? 0x90 : 0x91;
+        var cc = d === 1 ? 0xB0 : 0xB1;
+        for (var h = 1; h <= 8; h++) {
+            midi.sendShortMsg(note, 0x17 + h, 0x00);   // hot cues 0x18–0x1F
+        }
+        midi.sendShortMsg(cc, 0x40, 0x00);   // BPM high, then low: raw 0 = no BPM
+        midi.sendShortMsg(cc, 0x41, 0x00);
+        midi.sendShortMsg(cc, 0x44, 127);    // no loop
+        midi.sendShortMsg(cc, 0x49, 0x00);   // deck VU
+    }
+    midi.sendShortMsg(0xB0, 0x42, 0x00);     // master VU L / R
+    midi.sendShortMsg(0xB0, 0x43, 0x00);
+    MobaDJ._lastDeckVu = [-1, -1];
 };
 
 // ---- Crossfader setup (from the app's Beatmatch tab and Settings) ----

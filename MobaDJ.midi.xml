@@ -70,7 +70,7 @@
             <!-- Tempo range (rateRange): index 0..3 → ±4/8/16/50% -->
             <control><group>[Channel1]</group><key>MobaDJ.tempoRangeA</key><status>0xB0</status><midino>0x15</midino><options><script-binding /></options></control>
 
-            <!-- Fine tempo nudge: jump to the next integer BPM above/below the current one -->
+            <!-- Fine tempo nudge: ±0.01 BPM per press (the script sets the deck's bpm) -->
             <control><group>[Channel1]</group><key>MobaDJ.tempoFineDownA</key><status>0x90</status><midino>0x39</midino><options><script-binding /></options></control>
             <control><group>[Channel1]</group><key>MobaDJ.tempoFineUpA</key><status>0x90</status><midino>0x3A</midino><options><script-binding /></options></control>
 
