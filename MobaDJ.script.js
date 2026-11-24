@@ -9,7 +9,7 @@
 //  - Filter chain bypass (toggle) + chain preset selector (◀/▶ in the Mix tab)
 //  - FX slot enable (deterministic toggle via script)
 //  - Beatloop handler (correct toggle via reloop_toggle when a loop is active)
-//  - Decoding of relative two's complement 7-bit CC (jog turn)
+//  - Decoding of the relative jog CC (offset 64: 64 + delta, as both apps send it)
 // (Hot cues, beatjumps and fx prev/next_effect go through directly as <button /> in the XML —
 //  Mixxx natively responds to note on velocity 127.)
 
@@ -21,10 +21,15 @@ MobaDJ.rpm = 33 + 1 / 3;
 
 // ===== SCRATCH calibration =====
 // CC ticks per virtual platter revolution. HIGHER = subtler scratch.
-MobaDJ.ticksPerRev = 720;
+// The apps send (finger angle in radians × scratch sensitivity) ticks, so at the default
+// sensitivity 8 one full turn of the on-screen wheel is 2π × 8 ≈ 50 ticks = one record turn.
+MobaDJ.ticksPerRev = 50;
 
 // ===== BEND calibration (outer ring) =====
-MobaDJ.bendScale = 0.35;
+// Mixxx applies jog × 0.1 spread over 25 buffers (RateControl::getJogFactor). The apps send
+// ~22 ticks per outer-ring turn at the default bend sensitivity 3.5, so 6 per tick ≈ 130 jog
+// units per turn, about what a hardware jog wheel sends.
+MobaDJ.bendScale = 6;
 
 // Connections for continuous outputs (BPM, VU, loop). Saved to disconnect on shutdown.
 MobaDJ._connections = [];
@@ -278,8 +283,8 @@ MobaDJ._buttonOutputs = function () {
 
 // Bumped when the app ↔ mapping protocol changes; the app warns when it's too old.
 // v2: crossfader curve + reverse (CC 0x0B / 0x0C). v3: deck VU (CC 0x49).
-// v4: 1/32 and 1/16 beatloops (notes 0x49 / 0x4A).
-MobaDJ.MAPPING_VERSION = 4;
+// v4: 1/32 and 1/16 beatloops (notes 0x49 / 0x4A). v5: jog decodes offset 64 (was two's complement).
+MobaDJ.MAPPING_VERSION = 5;
 
 MobaDJ._lastDeckVu = [-1, -1];
 
@@ -399,8 +404,10 @@ MobaDJ.xfaderReverse = function (channel, control, value) {
 
 // ---- Helpers ----
 
+// Offset 64: the apps send 64 + delta (65 = +1, 63 = -1). Until v5 this decoded two's
+// complement, so a forward turn arrived as a big backward one (fixed 2026-11-24).
 MobaDJ._decodeRelative = function (value) {
-    return value < 64 ? value : value - 128;
+    return value - 64;
 };
 
 MobaDJ._jogTouch = function (deckNum, value) {
